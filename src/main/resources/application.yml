@@ -1,0 +1,35 @@
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: serviceCenter
+
+mybatis:
+  typeAliasesPackage : "cn.vpclub.yingxiaobao.cardopen.provider.entity"
+  #checkConfig-location : false
+  mapper-locations : "classpath:cn/vpclub/yingxiaobao/cardopen/provider/mapper/xml/*Mapper.xml"
+
+# LOGGING
+logging:
+  level:
+    org.springframework: INFO
+    cn.vpclub.spring.boot: DEBUG
+    cn.vpclub.yingxiaobao: DEBUG
+  pattern:
+    console: "%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{64})  - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: logs/application.log
+
+cors:
+  mappings: /**
+  allowedOrigins:
+#undertow config optimize
+server:
+  undertow:
+    io-threads: 2
+    worker-threads: 100
+  port: 8990
+
